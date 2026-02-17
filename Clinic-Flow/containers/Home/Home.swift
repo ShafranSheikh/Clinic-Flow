@@ -5,11 +5,11 @@ struct HomeView: View {
         NavigationStack {
             VStack(alignment: .leading) {
                 Text("Welcome back")
-                    .font(.title2)
+                    .font(.title3)
                     .foregroundColor(.secondary)
                 Spacer()
             }
-            .padding()
+            .padding(.horizontal)
             .frame(maxWidth: .infinity, alignment: .leading)
             .navigationTitle("Home")
         }
