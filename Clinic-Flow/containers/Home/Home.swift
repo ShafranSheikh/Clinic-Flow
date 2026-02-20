@@ -124,58 +124,300 @@ struct HomeView: View {
                     Spacer()
                     HStack(spacing: 15){
                         //box button 1
-                        VStack(){
-                            VStack(){
-                                Image(systemName: "calendar")
-                                    .font(.title)
-                                    .foregroundColor(.blue)
-                                    .padding(12)                            }
-                            .frame(width: 65, height:65)
-                            .background(Color.blue.opacity(0.1))
-                            .cornerRadius(12)
-                            .frame(maxWidth: .infinity)
-                            Text("Book")
+                        Button(action: {
+                            print("Book tapped")                        }) {
+                            VStack {
+                                VStack {
+                                    Image(systemName: "calendar")
+                                        .font(.title)
+                                        .foregroundColor(.blue)
+                                }
+                                .frame(width: 65, height: 65)
+                                .background(Color.blue.opacity(0.1))
+                                .cornerRadius(12)
+                                
+                                Text("Book")
+                                    .font(.footnote.bold())
+                                    .foregroundColor(.primary)
+                            }
                         }
+                        .frame(maxWidth: .infinity)
                         //box button 2
-                        VStack(){
-                            VStack(){
-                                Image(systemName: "location.fill")
-                                    .font(.title)
-                                    .foregroundColor(.green)
-                                    .padding(12)                            }
-                            .frame(width: 65, height:65)
-                            .background(Color.green.opacity(0.1))
-                            .cornerRadius(12)
-                            .frame(maxWidth: .infinity)
-                            Text("Book")
+                        Button(action: {
+                            print("Navigate tapped")
+                        }) {
+                            VStack {
+                                VStack {
+                                    Image(systemName: "location.fill")
+                                        .font(.title)
+                                        .foregroundColor(.green)
+                                }
+                                .frame(width: 65, height: 65)
+                                .background(Color.green.opacity(0.1))
+                                .cornerRadius(12)
+                                
+                                Text("Navigate")
+                                    .font(.footnote.bold())
+                                    .foregroundColor(.primary)
+                            }
                         }
+                        .frame(maxWidth: .infinity)
                         //box button 3
-                        VStack(){
-                            VStack(){
-                                Image(systemName: "doc.text.fill")
-                                    .font(.title)
-                                    .foregroundColor(.purple)
-                                    .padding(12)                            }
-                            .frame(width: 65, height:65)
-                            .background(Color.purple.opacity(0.1))
-                            .cornerRadius(12)
-                            .frame(maxWidth: .infinity)
-                            Text("Book")
+                        Button(action: {
+                            print("Records tapped")
+                        }) {
+                            VStack {
+                                VStack {
+                                    Image(systemName: "doc.text.fill")
+                                        .font(.title)
+                                        .foregroundColor(.purple)
+                                }
+                                .frame(width: 65, height: 65)
+                                .background(Color.purple.opacity(0.1))
+                                .cornerRadius(12)
+                                
+                                Text("Records")
+                                    .font(.footnote.bold())
+                                    .foregroundColor(.primary)
+                            }
                         }
+                        .frame(maxWidth: .infinity)
                         //box button 4
-                        VStack(){
-                            VStack(){
-                                Image(systemName: "phone.fill.badge.plus")
-                                    .font(.title)
-                                    .foregroundColor(.red)
-                                    .padding(12)                            }
-                            .frame(width: 65, height:65)
-                            .background(Color.red.opacity(0.1))
-                            .cornerRadius(12)
-                            .frame(maxWidth: .infinity)
-                            Text("Book")
+                        Button(action: {
+                            print("Emergency tapped")
+                        }) {
+                            VStack {
+                                VStack {
+                                    Image(systemName: "phone.fill.badge.plus")
+                                        .font(.title)
+                                        .foregroundColor(.red)
+                                }
+                                .frame(width: 65, height: 65)
+                                .background(Color.red.opacity(0.1))
+                                .cornerRadius(12)
+                                
+                                Text("Emergency")
+                                    .font(.footnote.bold())
+                                    .foregroundColor(.primary)
+                            }
                         }
+                        .frame(maxWidth: .infinity)
                         
+                    }
+                    .padding(20)
+                    VStack(spacing: 15) {
+
+                        HStack {
+                            Text("Upcoming Appointments")
+                                .font(.title2.bold())
+                            Spacer()
+                            Button("See All") {
+                                // Action for see all
+                            }
+                            .font(.subheadline.bold())
+                        }
+                        .padding(.vertical, 10)
+
+                        VStack(alignment: .leading, spacing: 10) {
+                            HStack(alignment: .center, spacing: 15) {
+                                Image(systemName: "person.crop.circle.fill")
+                                    .resizable()
+                                    .frame(width: 50, height: 50)
+                                    .foregroundColor(.gray.opacity(0.3))
+                                
+                                VStack(alignment: .leading, spacing: 4) {
+                                    Text("Dr. Michael Chen")
+                                        .font(.title3.bold())
+                                    Text("Cardiology")
+                                        .font(.body)
+                                        .foregroundColor(.black)
+                                }
+                                
+                                Spacer()
+                                
+                                Image(systemName: "chevron.right")
+                                    .font(.title3)
+                                    .foregroundColor(.gray)
+                            }
+
+                            HStack(spacing: 25) {
+
+                                HStack(spacing: 8) {
+                                    Image(systemName: "calendar")
+                                        .foregroundColor(.gray)
+                                    Text("Feb 14, 2026")
+                                        .foregroundColor(.gray)
+                                }
+
+                                HStack(spacing: 8) {
+                                    Image(systemName: "clock")
+                                        .foregroundColor(.gray)
+                                    Text("10:00 AM")
+                                        .foregroundColor(.gray)
+                                }
+                            }
+                            .padding(.leading, 75)
+                        }
+                        .padding()
+                        .background(Color.white)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 15)
+                                .stroke(Color.gray.opacity(0.3), lineWidth: 1)
+                        )
+                        .padding(.horizontal)
+                    }
+                    .padding(.vertical, 20)
+                    .padding(.horizontal)
+                    Text("Services")
+                        .font(.title2.bold())
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.horizontal)
+                        .padding(.vertical, 10)
+                    VStack(alignment: .leading, spacing: 10){
+                        
+                        //pharmacy
+                        Button(action: {
+                            // Action here
+                        }) {
+                            HStack(spacing: 15) {
+
+                                Image(systemName: "pill.fill")
+                                    .font(.title2)
+                                    .foregroundColor(.blue)
+                                    .frame(width: 30)
+
+                                VStack(alignment: .leading, spacing: 2) {
+                                    Text("Pharmacy")
+                                        .font(.headline)
+                                        .foregroundColor(.black)
+                                    Text("Get your medics")
+                                        .font(.subheadline)
+                                        .foregroundColor(.secondary)
+                                }
+                                
+                                Spacer()
+                                
+                                Image(systemName: "chevron.right")
+                                    .font(.footnote.bold())
+                                    .foregroundColor(.gray)
+                            }
+                            .padding()
+                            .background(Color.white)
+                            .cornerRadius(12)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 12)
+                                    .stroke(Color.gray.opacity(0.2), lineWidth: 1)
+                            )
+                        }
+                        .padding(.horizontal)
+                        
+                        //laboratory
+                        Button(action: {
+                            // Action here
+                        }) {
+                            HStack(spacing: 15) {
+
+                                Image(systemName: "testtube.2")
+                                    .font(.title2)
+                                    .foregroundColor(.green)
+                                    .frame(width: 30)
+                                
+                                VStack(alignment: .leading, spacing: 2) {
+                                    Text("Laboratory")
+                                        .font(.headline)
+                                        .foregroundColor(.black)
+                                    Text("Get your lab tests")
+                                        .font(.subheadline)
+                                        .foregroundColor(.secondary)
+                                }
+                                
+                                Spacer()
+
+                                Image(systemName: "chevron.right")
+                                    .font(.footnote.bold())
+                                    .foregroundColor(.gray)
+                            }
+                            .padding()
+                            .background(Color.white)
+                            .cornerRadius(12)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 12)
+                                    .stroke(Color.gray.opacity(0.2), lineWidth: 1)
+                            )
+                        }
+                        .padding(.horizontal)
+                        
+                        //Payments
+                        Button(action: {
+                            // Action here
+                        }) {
+                            HStack(spacing: 15) {
+
+                                Image(systemName: "creditcard.fill")
+                                    .font(.title2)
+                                    .foregroundColor(.purple)
+                                    .frame(width: 30) // Keeps icons aligned even if they have different widths
+
+                                VStack(alignment: .leading, spacing: 2) {
+                                    Text("Payments")
+                                        .font(.headline)
+                                        .foregroundColor(.black)
+                                    Text("Manage bills and payments")
+                                        .font(.subheadline)
+                                        .foregroundColor(.secondary)
+                                }
+                                
+                                Spacer()
+
+                                Image(systemName: "chevron.right")
+                                    .font(.footnote.bold())
+                                    .foregroundColor(.gray)
+                            }
+                            .padding()
+                            .background(Color.white)
+                            .cornerRadius(12)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 12)
+                                    .stroke(Color.gray.opacity(0.2), lineWidth: 1)
+                            )
+                        }
+                        .padding(.horizontal)
+                        
+                        //parking
+                        Button(action: {
+                            // Action here
+                        }) {
+                            HStack(spacing: 15) {
+                                
+                                Image(systemName: "car.fill")
+                                    .font(.title2)
+                                    .foregroundColor(.red)
+                                    .frame(width: 30)
+                                
+                                VStack(alignment: .leading, spacing: 2) {
+                                    Text("Parking")
+                                        .font(.headline)
+                                        .foregroundColor(.black)
+                                    Text("Discover parking slots")
+                                        .font(.subheadline)
+                                        .foregroundColor(.secondary)
+                                }
+                                
+                                Spacer()
+
+                                Image(systemName: "chevron.right")
+                                    .font(.footnote.bold())
+                                    .foregroundColor(.gray)
+                            }
+                            .padding()
+                            .background(Color.white)
+                            .cornerRadius(12)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 12)
+                                    .stroke(Color.gray.opacity(0.2), lineWidth: 1)
+                            )
+                        }
+                        .padding(.horizontal)
                     }
                 }
             }
