@@ -116,27 +116,30 @@ struct ActiveVisit: View {
                 Spacer()
                 
                 VStack(alignment: .leading, spacing: 0) {
-                    HStack(spacing: 20) {
-                        VStack(spacing: 0) {
-                            Rectangle()
-                                .fill(Color.gray.opacity(0.3))
-                                .frame(width: 2, height: 30)
-                            
-                            ZStack {
-                                Circle()
-                                    .fill(Color.blue.opacity(0.1))
-                                    .frame(width: 44, height: 44)
+                    NavigationLink(destination: VisitTimeline()) {
+                        HStack(spacing: 20) {
+                            VStack(spacing: 0) {
+                                Rectangle()
+                                    .fill(Color.gray.opacity(0.3))
+                                    .frame(width: 2, height: 30)
                                 
-                                Circle()
-                                    .fill(Color.blue)
-                                    .frame(width: 20, height: 20)
+                                ZStack {
+                                    Circle()
+                                        .fill(Color.blue.opacity(0.1))
+                                        .frame(width: 44, height: 44)
+                                    
+                                    Circle()
+                                        .fill(Color.blue)
+                                        .frame(width: 20, height: 20)
+                                }
+                                
+                                Rectangle()
+                                    .fill(Color.gray.opacity(0.3))
+                                    .frame(width: 2, height: 30)
                             }
-                            
-                            Rectangle()
-                                .fill(Color.gray.opacity(0.3))
-                                .frame(width: 2, height: 30)
                         }
-                        
+                        .buttonStyle(PlainButtonStyle()) // Keeps the text from turning blue
+                        .padding(.horizontal)
                         VStack(alignment: .leading, spacing: 4) {
                             Text("Waiting")
                                 .font(.headline)
