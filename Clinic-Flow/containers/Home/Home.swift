@@ -14,6 +14,7 @@ struct HomeView: View {
                                     .font(.title.bold())
                             }
                             .foregroundColor(.white)
+                            .padding(.horizontal)
                             
                             Spacer()
                             
@@ -96,9 +97,7 @@ struct HomeView: View {
                                     .font(.body.bold())
                             }
                         }
-                        Button(action: {
-                            // Navigation logic goes here later
-                        }) {
+                        NavigationLink(destination: ActiveVisit()) {
                             Text("View Visit Details")
                                 .font(.headline)
                                 .foregroundColor(.white)
