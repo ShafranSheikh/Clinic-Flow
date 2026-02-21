@@ -4,7 +4,7 @@ struct ActiveVisit: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 0) {
-                // Blue Header Section
+                // Header Section
                 VStack(alignment: .leading) {
                     VStack(alignment: .leading) {
                         Button(action: { dismiss() }){
@@ -21,9 +21,9 @@ struct ActiveVisit: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal)
                 .background(Color.blue)
+                
                 //card section
                 VStack(spacing: 20) {
-                    // Header Row: Title and Status Badge
                     HStack {
                         Text("Current Status")
                             .font(.title3.bold())
@@ -39,7 +39,6 @@ struct ActiveVisit: View {
                             .clipShape(Capsule())
                     }
                     
-                    // The Big Number and Info
                     VStack(spacing: 8) {
                         Text("7")
                             .font(.system(size: 80, weight: .bold))
@@ -53,7 +52,6 @@ struct ActiveVisit: View {
                             .foregroundColor(.secondary)
                     }
                     
-                    // Custom Progress Bar
                     VStack(spacing: 12) {
                         ZStack(alignment: .leading) {
                             Capsule()
@@ -71,7 +69,6 @@ struct ActiveVisit: View {
                         .fill(Color.gray.opacity(0.4))
                         .frame(height: 180)
                     
-                    // Current Location Row
                     HStack(spacing: 15) {
                         Image(systemName: "location.fill")
                             .foregroundColor(.green)
@@ -89,7 +86,6 @@ struct ActiveVisit: View {
                         Spacer()
                     }
                     
-                    // Action Button
                     Button(action: { /* Logic for navigation */ }) {
                         HStack {
                             Image(systemName: "location.north.fill")
@@ -110,30 +106,27 @@ struct ActiveVisit: View {
                 .padding(.horizontal)
                 .offset(y: -50)
                 .padding(.bottom, -30)
+                
                 // Visit Timeline Section
-                //timelineSection
                 Text("Visit Timeline")
                     .font(.title2.bold())
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.horizontal)
                     .padding(.vertical, 10)
                 Spacer()
-                // Visit Timeline Card
+                
                 VStack(alignment: .leading, spacing: 0) {
                     HStack(spacing: 20) {
-                        // 1. The Vertical Timeline Line and Dot
                         VStack(spacing: 0) {
                             Rectangle()
                                 .fill(Color.gray.opacity(0.3))
                                 .frame(width: 2, height: 30)
                             
-                            // The Outer "Glow" Circle
                             ZStack {
                                 Circle()
                                     .fill(Color.blue.opacity(0.1))
                                     .frame(width: 44, height: 44)
                                 
-                                // The Inner Solid Blue Circle
                                 Circle()
                                     .fill(Color.blue)
                                     .frame(width: 20, height: 20)
@@ -144,7 +137,6 @@ struct ActiveVisit: View {
                                 .frame(width: 2, height: 30)
                         }
                         
-                        // 2. The Text Content
                         VStack(alignment: .leading, spacing: 4) {
                             Text("Waiting")
                                 .font(.headline)
@@ -158,7 +150,6 @@ struct ActiveVisit: View {
                         
                         Spacer()
                         
-                        // 3. Trailing Chevron
                         Image(systemName: "chevron.right")
                             .foregroundColor(.gray)
                     }
@@ -171,16 +162,14 @@ struct ActiveVisit: View {
                         .stroke(Color.gray.opacity(0.2), lineWidth: 1)
                 )
                 .padding(.horizontal)
-                // Doctor Section
-                //doctorSection
+                
+                // Your doctor Section
                 Text("Your Doctor")
                     .font(.title2.bold())
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.horizontal)
                     .padding(.vertical, 10)
-                // Doctor Card
                 HStack(spacing: 15) {
-                    // 1. Initials Circle Badge
                     ZStack {
                         Circle()
                             .fill(Color.blue.opacity(0.1))
@@ -216,7 +205,7 @@ struct ActiveVisit: View {
             }
         }
         .ignoresSafeArea(edges: .top)
-        .navigationBarBackButtonHidden(true) // We will use our own back button
+        .navigationBarBackButtonHidden(true)
     }
 }
 
