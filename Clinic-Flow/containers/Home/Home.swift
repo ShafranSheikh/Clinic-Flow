@@ -382,15 +382,11 @@ struct HomeView: View {
                         }
                         .padding(.horizontal)
                         
-                        //parking
-                        Button(action: {
-                            // Action here
-                        }) {
+                        NavigationLink(destination: Parking()) { // Redirects to the new page
                             HStack(spacing: 15) {
-                                
                                 Image(systemName: "car.fill")
                                     .font(.title2)
-                                    .foregroundColor(.red)
+                                    .foregroundColor(.orange) // Changed to orange to match the parking theme
                                     .frame(width: 30)
                                 
                                 VStack(alignment: .leading, spacing: 2) {
@@ -416,6 +412,7 @@ struct HomeView: View {
                                     .stroke(Color.gray.opacity(0.2), lineWidth: 1)
                             )
                         }
+                        .buttonStyle(PlainButtonStyle()) // Prevents the whole row from turning blue
                         .padding(.horizontal)
                     }
                 }
