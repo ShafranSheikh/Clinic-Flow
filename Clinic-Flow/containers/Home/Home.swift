@@ -142,9 +142,7 @@ struct HomeView: View {
                         }
                         .frame(maxWidth: .infinity)
                         //box button 2
-                        Button(action: {
-                            print("Navigate tapped")
-                        }) {
+                        NavigationLink(destination: Navigator()) {
                             VStack {
                                 VStack {
                                     Image(systemName: "location.fill")
@@ -161,6 +159,7 @@ struct HomeView: View {
                             }
                         }
                         .frame(maxWidth: .infinity)
+                        .buttonStyle(PlainButtonStyle())
                         //box button 3
                         Button(action: {
                             print("Records tapped")
