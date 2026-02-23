@@ -275,16 +275,13 @@ struct HomeView: View {
                     VStack(alignment: .leading, spacing: 10){
                         
                         //pharmacy
-                        Button(action: {
-                            // Action here
-                        }) {
+                        NavigationLink(destination: Pharmacy()) {
                             HStack(spacing: 15) {
-
                                 Image(systemName: "pill.fill")
                                     .font(.title2)
                                     .foregroundColor(.blue)
                                     .frame(width: 30)
-
+                                
                                 VStack(alignment: .leading, spacing: 2) {
                                     Text("Pharmacy")
                                         .font(.headline)
@@ -295,7 +292,7 @@ struct HomeView: View {
                                 }
                                 
                                 Spacer()
-                                
+
                                 Image(systemName: "chevron.right")
                                     .font(.footnote.bold())
                                     .foregroundColor(.gray)
@@ -308,6 +305,7 @@ struct HomeView: View {
                                     .stroke(Color.gray.opacity(0.2), lineWidth: 1)
                             )
                         }
+                        .buttonStyle(PlainButtonStyle())
                         .padding(.horizontal)
                         
                         //laboratory
@@ -382,7 +380,7 @@ struct HomeView: View {
                         }
                         .padding(.horizontal)
                         
-                        NavigationLink(destination: Parking()) { // Redirects to the new page
+                        NavigationLink(destination: Parking()) {
                             HStack(spacing: 15) {
                                 Image(systemName: "car.fill")
                                     .font(.title2)
@@ -412,7 +410,7 @@ struct HomeView: View {
                                     .stroke(Color.gray.opacity(0.2), lineWidth: 1)
                             )
                         }
-                        .buttonStyle(PlainButtonStyle()) // Prevents the whole row from turning blue
+                        .buttonStyle(PlainButtonStyle())
                         .padding(.horizontal)
                     }
                 }

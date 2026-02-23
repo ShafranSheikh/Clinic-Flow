@@ -47,7 +47,7 @@ struct ParkingReservation: View{
             .padding(.bottom, -30)
             VStack(spacing : 12){
                 NavigationLink(destination: ActiveVisit()) {
-                    Text("View Visit Details")
+                    Text("Navigate to spot")
                         .font(.headline)
                         .foregroundColor(.white)
                         .frame(maxWidth: .infinity)
@@ -58,7 +58,7 @@ struct ParkingReservation: View{
                 .padding(.top, 5)
                 .padding(.horizontal)
                 Button(action: {}) {
-                    Text("Navigate to spot")
+                    Text("Cancel")
                         .font(.headline)
                         .foregroundColor(.black)
                         .frame(maxWidth: .infinity)
