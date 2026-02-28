@@ -27,6 +27,8 @@ struct Navigator: View{
                 .background(Color.blue)
                 .padding(.bottom, 20)
                 
+                
+                //Search
                 HStack(spacing: 12) {
                     Image(systemName: "magnifyingglass")
                         .foregroundColor(.gray)
@@ -40,6 +42,7 @@ struct Navigator: View{
                     .stroke(Color.blue.opacity(0.2), lineWidth: 1)
                     )
                     .padding(.horizontal)
+                
                     VStack {
                         RoundedRectangle(cornerRadius: 15)
                             .fill(Color.gray.opacity(0.1))

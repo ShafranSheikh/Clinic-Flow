@@ -308,11 +308,8 @@ struct HomeView: View {
                         .padding(.horizontal)
                         
                         //laboratory
-                        Button(action: {
-                            // Action here
-                        }) {
+                        NavigationLink(destination: Laboratory()) {
                             HStack(spacing: 15) {
-
                                 Image(systemName: "testtube.2")
                                     .font(.title2)
                                     .foregroundColor(.green)
@@ -341,6 +338,7 @@ struct HomeView: View {
                                     .stroke(Color.gray.opacity(0.2), lineWidth: 1)
                             )
                         }
+                        .buttonStyle(PlainButtonStyle())
                         .padding(.horizontal)
                         
                         //Payments
