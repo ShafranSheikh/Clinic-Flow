@@ -42,8 +42,7 @@ struct Laboratory: View{
                     }
 
                     HStack(spacing: 6) {
-                        Button(action: {})
-                        {
+                        NavigationLink(destination: LabTests()) {
                             HStack {
                                 Image(systemName: "calendar.badge.plus")
                                 Text("Book")
