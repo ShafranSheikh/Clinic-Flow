@@ -88,8 +88,7 @@ struct AppointmentsView: View {
                                             }
                                         }
                                         
-                                        // ROW 3: Action Button
-                                        Button(action: { /* Navigate to schedule */ }) {
+                                        NavigationLink(destination: AppointmentDetails()) {
                                             Text("View Schedule")
                                                 .font(.headline)
                                                 .foregroundColor(.white)

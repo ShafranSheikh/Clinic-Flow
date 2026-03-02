@@ -27,8 +27,6 @@ struct ConfirmBooking: View{
                 .background(Color.green)
                 .padding(.bottom, 30)
                 
-                
-                // SECTION 1: Appointment Details Card
                 VStack(alignment: .leading, spacing: 15) {
                     Text("Appointment Details")
                         .font(.headline)
@@ -46,7 +44,6 @@ struct ConfirmBooking: View{
                     
                     Divider().padding(.vertical, 5)
                     
-                    // Detail Rows using
                     VStack(spacing: 15) {
                         HStack {
                             Image(systemName: "calendar")
@@ -76,6 +73,77 @@ struct ConfirmBooking: View{
                 .background(Color.white)
                 .cornerRadius(15)
                 .shadow(radius: 0.5)
+                .padding(.horizontal)
+                
+                VStack(alignment: .leading, spacing: 18) {
+                        
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("Name*").font(.subheadline).bold()
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color.gray.opacity(0.3), lineWidth: 1)
+                                .frame(height: 45)
+                                .background(Color.white.cornerRadius(10))
+                        }
+
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("Age*").font(.subheadline).bold()
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color.gray.opacity(0.3), lineWidth: 1)
+                                .frame(height: 45)
+                                .background(Color.white.cornerRadius(10))
+                        }
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("Phone Number*").font(.subheadline).bold()
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color.gray.opacity(0.3), lineWidth: 1)
+                                .frame(height: 45)
+                                .background(Color.white.cornerRadius(10))
+                        }
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("Email").font(.subheadline).bold()
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color.gray.opacity(0.3), lineWidth: 1)
+                                .frame(height: 45)
+                                .background(Color.white.cornerRadius(10))
+                        }
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("Reason for Visit (Optional)").font(.subheadline).bold()
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color.gray.opacity(0.3), lineWidth: 1)
+                                .frame(height: 100)
+                                .background(Color.white.cornerRadius(10))
+                        }
+                    }
+                .padding()
+                .padding(.horizontal)
+                
+                VStack(spacing: 12) {
+                    
+                    NavigationLink(destination: LabBookingPayment()) {
+                        Text("Confirm Appointment")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(Color.green)
+                            .cornerRadius(50)
+                    }
+                    Button(action: { dismiss() }) {
+                        Text("Go Back")
+                            .font(.headline)
+                            .foregroundColor(.black)
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(Color.white)
+                            .cornerRadius(50)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 50)
+                                    .stroke(Color.gray.opacity(0.3), lineWidth: 1)
+                            )
+                    }
+                }
+                .padding()
+                .padding(.horizontal)
             }
         }
         .ignoresSafeArea(edges: .top)
