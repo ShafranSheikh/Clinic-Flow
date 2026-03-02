@@ -27,7 +27,6 @@ struct LabBookingConfirmation: View{
                 .background(Color.green)
                 .padding(.bottom, 30)
                 
-                //test details
                 VStack(alignment: .leading, spacing: 12) {
                     Text("Blood Test")
                         .font(.headline)
@@ -77,7 +76,6 @@ struct LabBookingConfirmation: View{
                 .cornerRadius(15)
                 .shadow(radius: 0.5)
                 
-                //calander
                 Text("Select Date ")
                     .font(.title2.bold())
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -92,8 +90,7 @@ struct LabBookingConfirmation: View{
                 }
                 .padding()
                 
-                
-                //  Select Time
+            
                 VStack(alignment: .leading, spacing: 15) {
                     Text("Select Time")
                         .font(.title2.bold())
@@ -131,28 +128,27 @@ struct LabBookingConfirmation: View{
                 .padding(.bottom, 20)
                 .padding(.horizontal)
                 
-                
-                //confirmation button
                 VStack(spacing: 20) {
-                                        Text("Usual rush hours for you to avoid: 11:00 AM - 02:00 PM")
-                                            .font(.subheadline.bold())
-                                            .multilineTextAlignment(.center)
-                                            .padding()
-                                            .background(Color.yellow.opacity(0.1))
-                                            .frame(maxWidth: .infinity)
-                                            .cornerRadius(15)
-                                        Button(action: {}) {
-                                            Text("Continue")
-                                                .font(.headline)
-                                                .foregroundColor(.white)
-                                                .frame(maxWidth: .infinity)
-                                                .padding()
-                                                .background(Color.green)
-                                                .cornerRadius(50)
-                                        }
-                                    }
-                                    .padding(.horizontal )
-                                    .padding(.vertical, 10)
+                    Text("Usual rush hours for you to avoid: 11:00 AM - 02:00 PM")
+                        .font(.subheadline.bold())
+                        .multilineTextAlignment(.center)
+                        .padding()
+                        .background(Color.yellow.opacity(0.1))
+                        .frame(maxWidth: .infinity)
+                        .cornerRadius(15)
+                    
+                    NavigationLink(destination: ConfirmBooking()) {
+                        Text("Continue")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(Color.green)
+                            .cornerRadius(50)
+                    }
+                }
+                .padding(.horizontal )
+                .padding(.vertical, 10)
                 
             }
         }

@@ -181,9 +181,7 @@ struct HomeView: View {
                         }
                         .frame(maxWidth: .infinity)
                         //box button 4
-                        Button(action: {
-                            print("Emergency tapped")
-                        }) {
+                        NavigationLink(destination: Emergency()) {
                             VStack {
                                 VStack {
                                     Image(systemName: "phone.fill.badge.plus")
