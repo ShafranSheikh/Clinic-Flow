@@ -1,6 +1,6 @@
 import SwiftUI
 
-// MARK: - DATA MODELS
+// DATA MODELS
 struct SpecialityItem: Identifiable {
     let id = UUID()
     let name: String
@@ -16,11 +16,11 @@ struct Doctor: Identifiable {
     let tags: [String]
     let nextAvailable: String
     let languages: String
-    let iconName: String // Changed from imageName to iconName
-    let iconColor: Color // Added for a personalized look
+    let iconName: String 
+    let iconColor: Color 
 }
 
-// MARK: - MAIN ENTRY POINT
+
 struct MedicalBookingApp: View {
     var body: some View {
         NavigationStack {
@@ -29,7 +29,7 @@ struct MedicalBookingApp: View {
     }
 }
 
-// MARK: - SUPPORTING COMPONENTS
+// COMPONENTS
 struct CustomBackButton: View {
     @Environment(\.dismiss) var dismiss
     var body: some View {
@@ -41,7 +41,7 @@ struct CustomBackButton: View {
     }
 }
 
-// MARK: - SCREEN 1: SELECT SPECIALITY
+// SELECT SPECIALITY
 struct SelectSpecialityView: View {
     @State private var searchText = ""
     let appBackground = Color(red: 245/255, green: 245/255, blue: 245/255)
@@ -105,7 +105,7 @@ struct SelectSpecialityView: View {
     }
 }
 
-// MARK: - SCREEN 2: CHOOSE DOCTOR
+//  CHOOSE DOCTOR
 struct ChooseDoctorView: View {
     let speciality: String
     @State private var searchText = ""
@@ -160,7 +160,7 @@ struct ChooseDoctorView: View {
     }
 }
 
-// MARK: - SCREEN 3: PICK DATE & TIME
+//  PICK DATE & TIME
 struct PickDateTimeView: View {
     let doctor: Doctor
     @State private var selectedDate: Int? = nil
@@ -259,7 +259,7 @@ struct PickDateTimeView: View {
     }
 }
 
-// MARK: - SCREEN 4: CONFIRM BOOKING
+// CONFIRM BOOKING
 struct ConfirmBookingView: View {
     let doctor: Doctor
     let date: String
@@ -334,7 +334,7 @@ struct ConfirmBookingView: View {
     }
 }
 
-// MARK: - SCREEN 5: MAKE PAYMENT
+// MAKE PAYMENT
 struct MakePaymentView: View {
     let patientName: String
     let date: String
@@ -384,7 +384,7 @@ struct MakePaymentView: View {
     }
 }
 
-// MARK: - SUPPORTING VIEWS
+
 struct SpecialityCard: View {
     let item: SpecialityItem
     var body: some View {
