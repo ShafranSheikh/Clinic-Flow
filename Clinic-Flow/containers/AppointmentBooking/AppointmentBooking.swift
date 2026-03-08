@@ -1,6 +1,6 @@
 import SwiftUI
 
-// DATA MODELS
+// MARK: - DATA MODELS
 struct SpecialityItem: Identifiable {
     let id = UUID()
     let name: String
@@ -12,15 +12,16 @@ struct SpecialityItem: Identifiable {
 struct Doctor: Identifiable {
     let id = UUID()
     let name: String
+    let specialty: String // Added to match ConfirmBookingView requirements
     let experience: String
     let tags: [String]
     let nextAvailable: String
     let languages: String
-    let iconName: String 
-    let iconColor: Color 
+    let iconName: String
+    let iconColor: Color
 }
 
-
+// MARK: - MAIN APP
 struct MedicalBookingApp: View {
     var body: some View {
         NavigationStack {
@@ -29,7 +30,7 @@ struct MedicalBookingApp: View {
     }
 }
 
-// COMPONENTS
+// MARK: - COMMON COMPONENTS
 struct CustomBackButton: View {
     @Environment(\.dismiss) var dismiss
     var body: some View {
@@ -41,7 +42,7 @@ struct CustomBackButton: View {
     }
 }
 
-// SELECT SPECIALITY
+// MARK: - SELECT SPECIALITY VIEW
 struct SelectSpecialityView: View {
     @State private var searchText = ""
     let appBackground = Color(red: 245/255, green: 245/255, blue: 245/255)
@@ -86,6 +87,7 @@ struct SelectSpecialityView: View {
     
     var headerSection: some View {
         VStack(alignment: .leading, spacing: 15) {
+            // No back button on root view usually, but kept per your design
             CustomBackButton()
             VStack(alignment: .leading, spacing: 4) {
                 Text("Select Speciality").font(.system(size: 28, weight: .bold))
@@ -105,16 +107,15 @@ struct SelectSpecialityView: View {
     }
 }
 
-//  CHOOSE DOCTOR
+// MARK: - CHOOSE DOCTOR VIEW
 struct ChooseDoctorView: View {
     let speciality: String
     @State private var searchText = ""
     
-    // Updated data with SF Symbols instead of images
     let doctors = [
-        Doctor(name: "Dr. Michael Chen", experience: "15 years experience", tags: ["Hypertension", "Heart Disease"], nextAvailable: "Feb 14, 2026", languages: "English, Sinhala", iconName: "person.badge.plus.fill", iconColor: .blue),
-        Doctor(name: "Dr. Sarah Jay", experience: "12 years experience", tags: ["Cardiac Surgery"], nextAvailable: "Feb 14, 2026", languages: "English, Sinhala", iconName:  "person.badge.plus.fill", iconColor: .blue),
-        Doctor(name: "Dr. Asiri Perera", experience: "8 years experience", tags: ["Cardiac Care"], nextAvailable: "Feb 15, 2026", languages: "English, Sinhala", iconName:  "person.badge.plus.fill", iconColor: .blue)
+        Doctor(name: "Dr. Michael Chen", specialty: "Cardiology", experience: "15 years experience", tags: ["Hypertension", "Heart Disease"], nextAvailable: "Feb 14, 2026", languages: "English, Sinhala", iconName: "person.badge.plus.fill", iconColor: .blue),
+        Doctor(name: "Dr. Sarah Jay", specialty: "Dermatology", experience: "12 years experience", tags: ["Cardiac Surgery"], nextAvailable: "Feb 14, 2026", languages: "English, Sinhala", iconName:  "person.badge.plus.fill", iconColor: .blue),
+        Doctor(name: "Dr. Asiri Perera", specialty: "General Medicine", experience: "8 years experience", tags: ["Cardiac Care"], nextAvailable: "Feb 15, 2026", languages: "English, Sinhala", iconName:  "person.badge.plus.fill", iconColor: .blue)
     ]
     
     var body: some View {
@@ -160,7 +161,7 @@ struct ChooseDoctorView: View {
     }
 }
 
-//  PICK DATE & TIME
+// MARK: - PICK DATE & TIME VIEW
 struct PickDateTimeView: View {
     let doctor: Doctor
     @State private var selectedDate: Int? = nil
@@ -200,7 +201,6 @@ struct PickDateTimeView: View {
                                 if !isPast {
                                     withAnimation(.spring()) {
                                         selectedDate = day
-                                        selectedTime = times.first
                                     }
                                 }
                             }
@@ -259,11 +259,12 @@ struct PickDateTimeView: View {
     }
 }
 
-// CONFIRM BOOKING
+// MARK: - CONFIRM BOOKING VIEW
 struct ConfirmBookingView: View {
     let doctor: Doctor
     let date: String
     let time: String
+    
     @Environment(\.dismiss) var dismiss
     @State private var name = ""
     @State private var age = ""
@@ -273,68 +274,70 @@ struct ConfirmBookingView: View {
     
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 20) {
+            VStack(alignment: .leading, spacing: 24) {
                 CustomBackButton()
                 
-                Text("Confirm Booking").font(.system(size: 24, weight: .bold))
-                Text("Review your appointment details").foregroundColor(.gray)
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("Confirm Booking").font(.system(size: 28, weight: .bold))
+                    Text("Review your appointment details").font(.subheadline).foregroundColor(.gray)
+                }
                 
-                VStack(alignment: .leading, spacing: 15) {
-                    HStack {
-                        // DOCTOR ICON INSTEAD OF IMAGE
-                        ZStack {
-                            Circle().fill(doctor.iconColor.opacity(0.1))
-                                .frame(width: 50, height: 50)
-                            Image(systemName: doctor.iconName)
-                                .foregroundColor(doctor.iconColor)
-                                .font(.system(size: 20))
-                        }
-                        
-                        VStack(alignment: .leading) {
-                            Text(doctor.name).font(.headline)
-                            Text("Specialist").font(.subheadline).foregroundColor(.gray)
+                // Details Card
+                VStack(alignment: .leading, spacing: 16) {
+                    Text("Appointment Details").font(.system(size: 18, weight: .bold))
+                    
+                    HStack(spacing: 15) {
+                        Circle().fill(Color.gray.opacity(0.4)).frame(width: 60, height: 60)
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(doctor.name).font(.system(size: 17, weight: .bold))
+                            Text(doctor.specialty).font(.subheadline).foregroundColor(.gray)
                         }
                     }
-                    Divider()
-                    DetailRow(icon: "calendar", label: "Date", value: date)
-                    DetailRow(icon: "clock", label: "Time", value: time)
-                    DetailRow(icon: "mappin.and.ellipse", label: "Location", value: "Room 305, 3rd Floor")
+                    Divider().background(Color.black.opacity(0.8))
+                    VStack(spacing: 12) {
+                        DetailRow(icon: "calendar", label: "Date", value: date)
+                        DetailRow(icon: "clock", label: "Time", value: time)
+                        DetailRow(icon: "mappin.and.ellipse", label: "Location", value: "Room 305, 3rd Floor")
+                    }
                 }
-                .padding().background(Color.white).cornerRadius(15)
+                .padding(20).background(Color.white).cornerRadius(15)
+                .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 5)
                 
-                HStack {
+                // Form
+                VStack(spacing: 18) {
                     InputBox(label: "Name*", text: $name)
                     InputBox(label: "Age*", text: $age)
-                }
-                HStack {
                     InputBox(label: "Phone Number*", text: $phone)
                     InputBox(label: "Email", text: $email)
+                    
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("Reason for Visit (Optional)").font(.system(size: 14, weight: .bold))
+                        TextEditor(text: $reason)
+                            .padding(10).frame(height: 100).background(Color.white).cornerRadius(12)
+                            .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.gray.opacity(0.2), lineWidth: 1))
+                            .overlay(Group { if reason.isEmpty { Text("Describe symptoms...").foregroundColor(.gray.opacity(0.5)).padding(15).allowsHitTesting(false) } }, alignment: .topLeading)
+                    }
                 }
                 
-                VStack(alignment: .leading) {
-                    Text("Reason for Visit (Optional)").font(.caption).bold()
-                    TextEditor(text: $reason)
-                        .frame(height: 80).padding(4)
-                        .background(Color.white).cornerRadius(8)
-                        .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.gray.opacity(0.2), lineWidth: 1))
-                }
-                
+                // Navigation to Payment
                 NavigationLink(destination: MakePaymentView(patientName: name, date: date)) {
                     Text("Confirm Appointment")
-                        .font(.headline).foregroundColor(.white)
-                        .frame(maxWidth: .infinity).padding().background(Color.blue).cornerRadius(15)
+                        .font(.system(size: 18, weight: .semibold)).foregroundColor(.white)
+                        .frame(maxWidth: .infinity).padding(.vertical, 18).background(Color.blue).cornerRadius(30)
                 }
                 
-                Button("Go Back") { dismiss() }.frame(maxWidth: .infinity).foregroundColor(.gray)
+                Button("Go Back") { dismiss() }
+                    .frame(maxWidth: .infinity).padding(.vertical, 18)
+                    .overlay(RoundedRectangle(cornerRadius: 30).stroke(Color.gray.opacity(0.3), lineWidth: 1))
             }
-            .padding(25)
+            .padding(24)
         }
         .navigationBarBackButtonHidden(true)
-        .background(Color(white: 0.97).ignoresSafeArea())
+        .background(Color(red: 0.98, green: 0.98, blue: 0.98).ignoresSafeArea())
     }
 }
 
-// MAKE PAYMENT
+// MARK: - MAKE PAYMENT VIEW
 struct MakePaymentView: View {
     let patientName: String
     let date: String
@@ -384,7 +387,7 @@ struct MakePaymentView: View {
     }
 }
 
-
+// MARK: - SUBVIEWS
 struct SpecialityCard: View {
     let item: SpecialityItem
     var body: some View {
@@ -409,16 +412,10 @@ struct DoctorCard: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack(alignment: .top, spacing: 15) {
-                
                 ZStack {
-                        Circle()
-                                        .fill(doctor.iconColor.opacity(0.1))
-                                        .frame(width: 80, height: 80)
-                                    
-                                    Image(systemName: doctor.iconName)
-                                        .font(.system(size: 32)) // Slightly larger for the circle
-                                        .foregroundColor(doctor.iconColor)
-                                }
+                    Circle().fill(doctor.iconColor.opacity(0.1)).frame(width: 80, height: 80)
+                    Image(systemName: doctor.iconName).font(.system(size: 32)).foregroundColor(doctor.iconColor)
+                }
                 
                 VStack(alignment: .leading, spacing: 4) {
                     Text(doctor.name).font(.system(size: 19, weight: .bold))
@@ -459,10 +456,10 @@ struct InputBox: View {
     let label: String
     @Binding var text: String
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 8) {
             Text(label).font(.caption).bold()
-            TextField("", text: $text).padding(12).background(Color.white).cornerRadius(8)
-                .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.gray.opacity(0.1), lineWidth: 1))
+            TextField("", text: $text).padding(14).background(Color.white).cornerRadius(12)
+                .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.gray.opacity(0.1), lineWidth: 1))
         }
     }
 }
