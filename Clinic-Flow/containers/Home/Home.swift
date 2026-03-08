@@ -123,8 +123,8 @@ struct HomeView: View {
                     Spacer()
                     HStack(spacing: 15){
                         //box button 1
-                        Button(action: {
-                            print("Book tapped")                        }) {
+                        NavigationLink(destination: SelectSpecialityView())
+                        {
                             VStack {
                                 VStack {
                                     Image(systemName: "calendar")
