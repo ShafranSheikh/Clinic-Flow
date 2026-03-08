@@ -19,10 +19,15 @@ struct HomeView: View {
                             Spacer()
                             
                             HStack(spacing: 15) {
-                                Image(systemName: "bell.fill")
-                                    .padding(10)
-                                    .background(.white.opacity(0.2))
-                                    .clipShape(Circle())
+                              
+                                NavigationLink(destination: NotificationsView()) {
+                                    Image(systemName: "bell.fill")
+                                        .padding(10)
+                                        .background(.white.opacity(0.2))
+                                        .clipShape(Circle())
+                                }
+                                .buttonStyle(PlainButtonStyle())
+
                                 
                                 Image(systemName: "person.fill")
                                     .padding(10)
