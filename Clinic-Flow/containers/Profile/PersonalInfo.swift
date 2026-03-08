@@ -63,15 +63,18 @@ struct PersonalInfo: View {
             
             Spacer()
             
-            // MARK: - Bottom Done Button
-            Button(action: { dismiss() }) {
-                Text("Done")
-                    .font(.system(size: 16, weight: .bold))
+            
+            Button(action: {
+                print("Profile Saved")
+                dismiss()
+            }) {
+                Text("Back")
+                    .font(.headline)
                     .foregroundColor(.white)
                     .frame(maxWidth: .infinity)
                     .frame(height: 54)
                     .background(Color.blue)
-                    .cornerRadius(27)
+                    .cornerRadius(12)
             }
             .padding(.horizontal, 30)
             .padding(.bottom, 30)

@@ -122,48 +122,6 @@ struct ProfileView: View {
     }
 }
 
-// MARK: - Privacy Policy View
-struct PrivacyPolicyView: View {
-    @Environment(\.dismiss) var dismiss
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            VStack(alignment: .leading, spacing: 15) {
-                Button(action: { dismiss() }) {
-                    Image(systemName: "arrow.left")
-                        .font(.system(size: 22, weight: .bold))
-                        .foregroundColor(.black)
-                }
-                .padding(.top, 60)
-                
-                Text("Privacy Policy")
-                    .font(.system(size: 28, weight: .bold))
-            }
-            .padding(.horizontal, 25)
-            .padding(.bottom, 20)
-            
-            ScrollView {
-                VStack(alignment: .leading, spacing: 20) {
-                    Text("Last update: 2 January 2026")
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
-                    
-                    Text("We respect your privacy. This app securely handles your personal and medical information to provide better healthcare services.")
-                        .font(.body)
-                        .foregroundColor(.primary)
-
-                    Text("This clinic mobile application is committed to protecting user privacy and maintaining confidentiality...")
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
-                        .lineSpacing(6)
-                }
-                .padding(25)
-            }
-        }
-        .navigationBarHidden(true)
-    }
-}
-
 // MARK: - Reusable Components
 struct SectionHeader: View {
     let title: String
@@ -171,7 +129,7 @@ struct SectionHeader: View {
         Text(title)
             .font(.caption.bold())
             .foregroundColor(.blue)
-            .kerning(1.0) // FIXED: Replaced letterSpacing
+            .kerning(1.0)
             .padding(.top, 10)
     }
 }

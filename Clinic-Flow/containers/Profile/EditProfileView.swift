@@ -15,7 +15,7 @@ struct EditProfileView: View {
             // MARK: - Header Section
             ZStack(alignment: .topLeading) {
                 Color.blue
-                    .frame(height: 160) // Compacted header
+                    .frame(height: 160)
                 
                 VStack(alignment: .leading, spacing: 12) {
                     Button(action: { dismiss() }) {
@@ -31,7 +31,7 @@ struct EditProfileView: View {
                 .padding(.top, 50)
                 .padding(.leading, 20)
                 
-                // Profile Image Overlay
+               
                 VStack {
                     Spacer()
                     ZStack(alignment: .bottomTrailing) {
@@ -59,10 +59,9 @@ struct EditProfileView: View {
                 }
                 .frame(maxWidth: .infinity)
             }
-            
-            // MARK: - Fixed Form Content (No Scroll)
-            VStack(spacing: 14) { // Tightened spacing
-                Spacer().frame(height: 50) // Space for overlapping avatar
+
+        VStack(spacing: 14){
+                Spacer().frame(height: 50)
                 
                 CleanTextField(label: "First Name", text: $firstName)
                 CleanTextField(label: "Last Name", text: $lastName)
@@ -70,9 +69,9 @@ struct EditProfileView: View {
                 CleanTextField(label: "Phone No", text: $phone, keyboardType: .phonePad)
                 CleanTextField(label: "Address", text: $address)
                 
-                Spacer() // Pushes the button to the bottom
+                Spacer()
                 
-                // MARK: - Pinned Save Button
+                
                 Button(action: {
                     print("Profile Saved")
                     dismiss()
@@ -85,7 +84,7 @@ struct EditProfileView: View {
                         .background(Color.blue)
                         .cornerRadius(12)
                 }
-                .padding(.bottom, 20) // Extra padding for bottom safe area
+                .padding(.bottom, 20)
             }
             .padding(.horizontal, 25)
         }
