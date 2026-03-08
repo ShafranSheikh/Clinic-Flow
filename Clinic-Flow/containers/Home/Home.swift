@@ -19,10 +19,15 @@ struct HomeView: View {
                             Spacer()
                             
                             HStack(spacing: 15) {
-                                Image(systemName: "bell.fill")
-                                    .padding(10)
-                                    .background(.white.opacity(0.2))
-                                    .clipShape(Circle())
+                              
+                                NavigationLink(destination: NotificationsView()) {
+                                    Image(systemName: "bell.fill")
+                                        .padding(10)
+                                        .background(.white.opacity(0.2))
+                                        .clipShape(Circle())
+                                }
+                                .buttonStyle(PlainButtonStyle())
+
                                 
                                 Image(systemName: "person.fill")
                                     .padding(10)
@@ -35,7 +40,7 @@ struct HomeView: View {
                         .padding(.top, 20)
                         .padding(.bottom, 40)
                     }
-                    .frame(height: 280)
+                    .frame(height: 220)
                     .frame(maxWidth: .infinity)
                     .background(Color.blue)
 

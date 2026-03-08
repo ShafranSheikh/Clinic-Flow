@@ -18,7 +18,7 @@ struct ParkingReservation: View{
                     }
                     .foregroundColor(.white)
                 }
-                .frame(height: 280)
+                .frame(height: 230)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal)
                 .background(Color.orange)

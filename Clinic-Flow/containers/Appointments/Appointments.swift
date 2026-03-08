@@ -19,7 +19,7 @@ struct AppointmentsView: View {
                             
                             Spacer()
                             
-                            NavigationLink(destination: ActiveVisit()) {
+                            NavigationLink(destination:SelectSpecialityView()) {
                                 Text("+ Book")
                                     .font(.headline)
                                     .foregroundColor(.white)
@@ -33,7 +33,7 @@ struct AppointmentsView: View {
                         .padding(.horizontal)
                         .padding(.top, 20)
                     }
-                    .frame(height: 150)
+                    .frame(height: 130)
                     .frame(maxWidth: .infinity)
                     .background(Color.white)
                     .padding(.bottom, 40)
