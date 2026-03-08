@@ -116,7 +116,7 @@ struct ActiveVisit: View {
                 Spacer()
                 
                 VStack(alignment: .leading, spacing: 0) {
-                    NavigationLink(destination: VisitTimeline()) {
+                    NavigationLink(destination: VisitTimelineView()) {
                         HStack(spacing: 20) {
                             VStack(spacing: 0) {
                                 Rectangle()
