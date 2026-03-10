@@ -29,6 +29,7 @@ struct MainNavigation: View {
                 }
                 .tag(3)
         }
+        .navigationBarBackButtonHidden(true)
     }
 }
 

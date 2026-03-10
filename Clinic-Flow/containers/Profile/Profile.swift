@@ -4,6 +4,8 @@ import SwiftUI
 struct ProfileView: View {
     @State private var selectedLanguage = "English"
     @State private var showLanguagePicker = false
+    @State private var showLogoutConfirm = false
+    @State private var logout = false
     
     var body: some View {
         NavigationStack {
@@ -101,7 +103,9 @@ struct ProfileView: View {
                             MenuRow(icon: "person.badge.shield.checkmark.fill", title: "Privacy Policy")
                         }
                         
-                        Button(action: {}) {
+                        Button(action: {
+                            showLogoutConfirm = true
+                        }) {
                             Text("Sign Out")
                                 .font(.headline)
                                 .foregroundColor(.white)
@@ -111,6 +115,17 @@ struct ProfileView: View {
                                 .cornerRadius(50)
                         }
                         .padding(.top, 20)
+                        .alert("Log Out", isPresented: $showLogoutConfirm) {
+                            Button("Log Out", role: .destructive) {
+                                logout = true
+                            }
+                            Button("Cancel", role: .cancel) { }
+                        } message: {
+                            Text("Are you sure you want to log out of your account?")
+                        }
+                        .navigationDestination(isPresented: $logout) {
+                            Login()
+                        }
                     }
                     .padding(.horizontal)
                     .offset(y: -30)
