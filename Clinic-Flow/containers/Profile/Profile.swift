@@ -89,7 +89,7 @@ struct ProfileView: View {
                             Button("Cancel", role: .cancel) { }
                         }
                         
-                        NavigationLink(destination: Text("Emergency Contacts")) {
+                        NavigationLink(destination: Emergency()) {
                             MenuRow(icon: "light.beacon.max.fill", title: "Emergency Contacts")
                         }
                         

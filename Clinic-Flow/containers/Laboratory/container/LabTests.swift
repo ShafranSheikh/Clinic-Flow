@@ -20,7 +20,7 @@ struct LabTests: View{
                     }
                     .foregroundColor(.white)
                 }
-                .frame(height: 170)
+                .frame(height: 130)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal)
                 .padding(.vertical, 20)

@@ -15,11 +15,10 @@ struct PersonalInfo: View {
          
             VStack(alignment: .leading, spacing: 15) {
                
-                Button(action: { dismiss() }) {
+                Button(action: { dismiss() }){
                     Image(systemName: "arrow.left")
-                        .font(.system(size: 22, weight: .bold))
-                        .foregroundColor(.white)
                 }
+                .foregroundColor(Color.white)
                 .padding(.leading, 20)
                 .padding(.top, 60)
                 
@@ -37,7 +36,7 @@ struct PersonalInfo: View {
             // MARK: - Profile Image
             ZStack {
                 Circle()
-                    .fill(Color.blue.opacity(0.6))
+                    .fill(Color.blue)
                     .frame(width: 110, height: 110)
                     .overlay(Circle().stroke(Color.white, lineWidth: 4))
                 

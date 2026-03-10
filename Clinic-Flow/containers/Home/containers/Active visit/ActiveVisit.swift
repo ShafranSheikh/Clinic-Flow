@@ -17,7 +17,7 @@ struct ActiveVisit: View {
                     }
                     .foregroundColor(.white)
                 }
-                .frame(height: 280)
+                .frame(height: 220)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal)
                 .background(Color.blue)
