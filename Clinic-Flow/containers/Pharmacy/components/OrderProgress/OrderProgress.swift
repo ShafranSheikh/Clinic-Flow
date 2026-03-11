@@ -2,7 +2,7 @@ import SwiftUI
 
 struct OrderProgress: View {
     var onComplete: () -> Void
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 15) {
             HStack {
@@ -19,25 +19,28 @@ struct OrderProgress: View {
                         .clipShape(Capsule())
                 }
             }
-            
+
             HStack(spacing: 15) {
-                Image(systemName: "clock.fill") // Image still uses systemName
+                Image(systemName: "clock.fill")  // Image still uses systemName
                     .padding(12)
                     .background(Color.blue.opacity(0.1))
                     .clipShape(Circle())
                     .foregroundColor(.blue)
-                
+
                 VStack(alignment: .leading) {
-                    Text("Estimated Wait").font(.subheadline).foregroundColor(.secondary)
+                    Text("Estimated Wait").font(.subheadline).foregroundColor(
+                        .secondary
+                    )
                     Text("15 - 20 minutes").font(.body.bold())
                 }
             }
-            
+
             Text("Your order is being prepared. Please be ready to collect it.")
                 .font(.subheadline)
                 .foregroundColor(.secondary)
-            
-            Button(action: {}) {
+
+            NavigationLink(destination: Navigator())
+            {
                 Label("Navigate To Pharmacy", systemImage: "location.fill")
                     .font(.subheadline.bold())
                     .frame(maxWidth: .infinity)
