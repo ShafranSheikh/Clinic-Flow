@@ -1,6 +1,8 @@
 import SwiftUI
 struct ActiveVisit: View {
     @Environment(\.dismiss) private var dismiss
+    @State private var navigateToNavigator = false
+    
     var body: some View {
         ScrollView {
             VStack(spacing: 0) {
@@ -86,7 +88,7 @@ struct ActiveVisit: View {
                         Spacer()
                     }
                     
-                    Button(action: { /* Logic for navigation */ }) {
+                    Button(action: { navigateToNavigator = true }) {
                         HStack {
                             Image(systemName: "location.north.fill")
                             Text("Start Navigation")
@@ -97,6 +99,9 @@ struct ActiveVisit: View {
                         .padding()
                         .background(Color.blue)
                         .cornerRadius(15)
+                    }
+                    .navigationDestination(isPresented: $navigateToNavigator) {
+                        Navigator()
                     }
                 }
                 .padding(20)
