@@ -360,6 +360,7 @@ struct AppointmentsView: View {
                 }
             }
             .ignoresSafeArea(edges: .top)
+            .navigationBarBackButtonHidden(true)
         }
     }
 }

@@ -1,11 +1,12 @@
 import SwiftUI
+
 struct ParkingOption: View {
     let title: String
     let location: String
     let spots: Int
     let price: String
     let tags: [String]
-    
+
     var body: some View {
         VStack(spacing: 0) {
             VStack(alignment: .leading, spacing: 12) {
@@ -13,11 +14,11 @@ struct ParkingOption: View {
                     VStack(alignment: .leading, spacing: 4) {
                         Text(title)
                             .font(.headline)
-                        
+
                         Label(location, systemImage: "mappin.and.ellipse")
                             .font(.caption)
                             .foregroundColor(.gray)
-                        
+
                         HStack {
                             ForEach(tags, id: \.self) { tag in
                                 Text(tag)
@@ -25,14 +26,17 @@ struct ParkingOption: View {
                                     .padding(.horizontal, 8)
                                     .padding(.vertical, 4)
                                     .overlay(
-                                        Capsule().stroke(Color.gray.opacity(0.3), lineWidth: 1)
+                                        Capsule().stroke(
+                                            Color.gray.opacity(0.3),
+                                            lineWidth: 1
+                                        )
                                     )
                             }
                         }
                     }
-                    
+
                     Spacer()
-                    
+
                     // Spots Remaining Badge
                     VStack {
                         Text("\(spots)")
@@ -47,36 +51,41 @@ struct ParkingOption: View {
                 }
             }
             .padding()
-            
+
             Divider()
 
             HStack {
                 Text(price)
                     .font(.subheadline.bold())
-                
+
                 Spacer()
-                
+
                 HStack(spacing: 10) {
                     // Navigate Button
-                    Button(action: {}) {
+                    NavigationLink(destination: Navigator()) {
                         Label("Navigate", systemImage: "paperplane")
                             .font(.caption.bold())
                             .padding(.horizontal, 12)
                             .padding(.vertical, 8)
-                            .overlay(Capsule().stroke(Color.gray.opacity(0.5), lineWidth: 1))
+                            .overlay(
+                                Capsule().stroke(
+                                    Color.gray.opacity(0.5),
+                                    lineWidth: 1
+                                )
+                            )
                     }
                     .foregroundColor(.black)
-                    
+
                     // Reserve Button
-                        NavigationLink(destination: ParkingReservation()) {
-                            Text("Reserve")
-                                .font(.caption.bold())
-                                .foregroundColor(.white)
-                                .padding(.horizontal, 20)
-                                .padding(.vertical, 8)
-                                .background(Color.orange)
-                                .cornerRadius(20)
-                        }
+                    NavigationLink(destination: ParkingReservation()) {
+                        Text("Reserve")
+                            .font(.caption.bold())
+                            .foregroundColor(.white)
+                            .padding(.horizontal, 20)
+                            .padding(.vertical, 8)
+                            .background(Color.orange)
+                            .cornerRadius(20)
+                    }
                 }
             }
             .padding()

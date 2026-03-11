@@ -92,18 +92,26 @@ struct Login: View {
 struct SocialButton: View {
     let icon: String
     let title: String
+    @State private var navigateToOTP = false
 
     var body: some View {
-        HStack {
-            Image(systemName: icon)
-            Text(title)
-                .fontWeight(.medium)
+        Button(action: {
+            navigateToOTP = true
+        }) {
+            HStack {
+                Image(systemName: icon)
+                Text(title)
+                    .fontWeight(.medium)
+            }
+            .foregroundColor(.white)
+            .frame(maxWidth: .infinity)
+            .padding()
+            .background(Color.black.opacity(0.3))
+            .cornerRadius(30)
         }
-        .foregroundColor(.white)
-        .frame(maxWidth: .infinity)
-        .padding()
-        .background(Color.black.opacity(0.3))
-        .cornerRadius(30)
+        .navigationDestination(isPresented: $navigateToOTP) {
+            MainNavigation()
+        }
     }
 }
 
