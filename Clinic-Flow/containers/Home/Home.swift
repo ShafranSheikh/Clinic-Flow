@@ -1,8 +1,11 @@
 import SwiftUI
 
 struct HomeView: View {
+    @State private var showLogoutConfirm = false
+    @State private var logout = false
+
     var body: some View {
-        NavigationStack { // Keep this for navigation features
+        NavigationStack {  // Keep this for navigation features
             ScrollView {
                 VStack(spacing: 0) {
                     VStack(alignment: .leading) {
@@ -15,12 +18,13 @@ struct HomeView: View {
                             }
                             .foregroundColor(.white)
                             .padding(.horizontal)
-                            
+
                             Spacer()
-                            
+
                             HStack(spacing: 15) {
-                              
-                                NavigationLink(destination: NotificationsView()) {
+
+                                NavigationLink(destination: NotificationsView())
+                                {
                                     Image(systemName: "bell.fill")
                                         .padding(10)
                                         .background(.white.opacity(0.2))
@@ -28,13 +32,38 @@ struct HomeView: View {
                                 }
                                 .buttonStyle(PlainButtonStyle())
 
-                                
-                                Image(systemName: "person.fill")
+                                Button(action: {
+                                    showLogoutConfirm = true
+                                }) {
+                                    Image(
+                                        systemName:
+                                            "rectangle.portrait.and.arrow.right"
+                                    )
                                     .padding(10)
-                                    .background(.white.opacity(0.2))
+                                    .background(Color.white.opacity(0.2))
                                     .clipShape(Circle())
+                                    .foregroundColor(.white)
+                                }
                             }
                             .foregroundColor(.white)
+                            .confirmationDialog(
+                                "Log Out",
+                                isPresented: $showLogoutConfirm,
+                                titleVisibility: .visible
+                            ) {
+                                Button("Log Out", role: .destructive) {
+                                    logout = true
+                                }
+                                
+                                Button("Cancel", role: .cancel) {}
+                            } message: {
+                                Text(
+                                    "Are you sure you want to log out of your account?"
+                                )
+                            }
+                            .navigationDestination(isPresented: $logout) {
+                                Login()
+                            }
                         }
                         .padding(.horizontal)
                         .padding(.top, 20)
@@ -53,9 +82,9 @@ struct HomeView: View {
                                     .font(.subheadline)
                                     .foregroundColor(.secondary)
                             }
-                            
+
                             Spacer()
-                            
+
                             Text("In-progress")
                                 .font(.caption2.bold())
                                 .padding(.horizontal, 10)
@@ -71,7 +100,7 @@ struct HomeView: View {
                                 .padding(12)
                                 .background(Color.blue.opacity(0.1))
                                 .clipShape(Circle())
-                            
+
                             VStack(alignment: .leading, spacing: 2) {
                                 Text("Estimated Wait")
                                     .font(.subheadline)
@@ -79,11 +108,17 @@ struct HomeView: View {
                                 Text("15 - 20 minutes")
                                     .font(.body.bold())
                             }
-                            
+
                             Spacer()
-                            
+
                             Text("7")
-                                .font(.system(size: 45, weight: .bold, design: .rounded))
+                                .font(
+                                    .system(
+                                        size: 45,
+                                        weight: .bold,
+                                        design: .rounded
+                                    )
+                                )
                                 .foregroundColor(.blue)
                         }
                         HStack(spacing: 15) {
@@ -93,7 +128,7 @@ struct HomeView: View {
                                 .padding(12)
                                 .background(Color.green.opacity(0.1))
                                 .clipShape(Circle())
-                            
+
                             VStack(alignment: .leading, spacing: 2) {
                                 Text("Current Location")
                                     .font(.subheadline)
@@ -116,20 +151,24 @@ struct HomeView: View {
                     .padding(20)
                     .background(Color.white)
                     .cornerRadius(20)
-                    .shadow(color: Color.black.opacity(0.08), radius: 10, x: 0, y: 5)
+                    .shadow(
+                        color: Color.black.opacity(0.08),
+                        radius: 10,
+                        x: 0,
+                        y: 5
+                    )
                     .padding(.horizontal)
                     .offset(y: -60)
-                    
+
                     Text("Quick Actions")
                         .font(.title2.bold())
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.horizontal)
                         .padding(.vertical, 10)
                     Spacer()
-                    HStack(spacing: 15){
+                    HStack(spacing: 15) {
                         //box button 1
-                        NavigationLink(destination: SelectSpecialityView())
-                        {
+                        NavigationLink(destination: SelectSpecialityView()) {
                             VStack {
                                 VStack {
                                     Image(systemName: "calendar")
@@ -139,7 +178,7 @@ struct HomeView: View {
                                 .frame(width: 65, height: 65)
                                 .background(Color.blue.opacity(0.1))
                                 .cornerRadius(12)
-                                
+
                                 Text("Book")
                                     .font(.footnote.bold())
                                     .foregroundColor(.primary)
@@ -157,7 +196,7 @@ struct HomeView: View {
                                 .frame(width: 65, height: 65)
                                 .background(Color.green.opacity(0.1))
                                 .cornerRadius(12)
-                                
+
                                 Text("Navigate")
                                     .font(.footnote.bold())
                                     .foregroundColor(.primary)
@@ -178,7 +217,7 @@ struct HomeView: View {
                                 .frame(width: 65, height: 65)
                                 .background(Color.purple.opacity(0.1))
                                 .cornerRadius(12)
-                                
+
                                 Text("Records")
                                     .font(.footnote.bold())
                                     .foregroundColor(.primary)
@@ -196,14 +235,14 @@ struct HomeView: View {
                                 .frame(width: 65, height: 65)
                                 .background(Color.red.opacity(0.1))
                                 .cornerRadius(12)
-                                
+
                                 Text("Emergency")
                                     .font(.footnote.bold())
                                     .foregroundColor(.primary)
                             }
                         }
                         .frame(maxWidth: .infinity)
-                        
+
                     }
                     .padding(20)
                     VStack(spacing: 15) {
@@ -225,7 +264,7 @@ struct HomeView: View {
                                     .resizable()
                                     .frame(width: 50, height: 50)
                                     .foregroundColor(.gray.opacity(0.3))
-                                
+
                                 VStack(alignment: .leading, spacing: 4) {
                                     Text("Dr. Michael Chen")
                                         .font(.title3.bold())
@@ -233,9 +272,9 @@ struct HomeView: View {
                                         .font(.body)
                                         .foregroundColor(.black)
                                 }
-                                
+
                                 Spacer()
-                                
+
                                 Image(systemName: "chevron.right")
                                     .font(.title3)
                                     .foregroundColor(.gray)
@@ -274,8 +313,8 @@ struct HomeView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.horizontal)
                         .padding(.vertical, 10)
-                    VStack(alignment: .leading, spacing: 10){
-                        
+                    VStack(alignment: .leading, spacing: 10) {
+
                         //pharmacy
                         NavigationLink(destination: Pharmacy()) {
                             HStack(spacing: 15) {
@@ -283,7 +322,7 @@ struct HomeView: View {
                                     .font(.title2)
                                     .foregroundColor(.blue)
                                     .frame(width: 30)
-                                
+
                                 VStack(alignment: .leading, spacing: 2) {
                                     Text("Pharmacy")
                                         .font(.headline)
@@ -292,7 +331,7 @@ struct HomeView: View {
                                         .font(.subheadline)
                                         .foregroundColor(.secondary)
                                 }
-                                
+
                                 Spacer()
 
                                 Image(systemName: "chevron.right")
@@ -304,12 +343,15 @@ struct HomeView: View {
                             .cornerRadius(12)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 12)
-                                    .stroke(Color.gray.opacity(0.2), lineWidth: 1)
+                                    .stroke(
+                                        Color.gray.opacity(0.2),
+                                        lineWidth: 1
+                                    )
                             )
                         }
                         .buttonStyle(PlainButtonStyle())
                         .padding(.horizontal)
-                        
+
                         //laboratory
                         NavigationLink(destination: Laboratory()) {
                             HStack(spacing: 15) {
@@ -317,7 +359,7 @@ struct HomeView: View {
                                     .font(.title2)
                                     .foregroundColor(.green)
                                     .frame(width: 30)
-                                
+
                                 VStack(alignment: .leading, spacing: 2) {
                                     Text("Laboratory")
                                         .font(.headline)
@@ -326,7 +368,7 @@ struct HomeView: View {
                                         .font(.subheadline)
                                         .foregroundColor(.secondary)
                                 }
-                                
+
                                 Spacer()
 
                                 Image(systemName: "chevron.right")
@@ -338,12 +380,15 @@ struct HomeView: View {
                             .cornerRadius(12)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 12)
-                                    .stroke(Color.gray.opacity(0.2), lineWidth: 1)
+                                    .stroke(
+                                        Color.gray.opacity(0.2),
+                                        lineWidth: 1
+                                    )
                             )
                         }
                         .buttonStyle(PlainButtonStyle())
                         .padding(.horizontal)
-                        
+
                         //Payments
                         Button(action: {
                             // Action here
@@ -353,7 +398,7 @@ struct HomeView: View {
                                 Image(systemName: "creditcard.fill")
                                     .font(.title2)
                                     .foregroundColor(.purple)
-                                    .frame(width: 30) // Keeps icons aligned even if they have different widths
+                                    .frame(width: 30)  // Keeps icons aligned even if they have different widths
 
                                 VStack(alignment: .leading, spacing: 2) {
                                     Text("Payments")
@@ -363,7 +408,7 @@ struct HomeView: View {
                                         .font(.subheadline)
                                         .foregroundColor(.secondary)
                                 }
-                                
+
                                 Spacer()
 
                                 Image(systemName: "chevron.right")
@@ -375,18 +420,21 @@ struct HomeView: View {
                             .cornerRadius(12)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 12)
-                                    .stroke(Color.gray.opacity(0.2), lineWidth: 1)
+                                    .stroke(
+                                        Color.gray.opacity(0.2),
+                                        lineWidth: 1
+                                    )
                             )
                         }
                         .padding(.horizontal)
-                        
+
                         NavigationLink(destination: Parking()) {
                             HStack(spacing: 15) {
                                 Image(systemName: "car.fill")
                                     .font(.title2)
-                                    .foregroundColor(.orange) // Changed to orange to match the parking theme
+                                    .foregroundColor(.orange)  // Changed to orange to match the parking theme
                                     .frame(width: 30)
-                                
+
                                 VStack(alignment: .leading, spacing: 2) {
                                     Text("Parking")
                                         .font(.headline)
@@ -395,7 +443,7 @@ struct HomeView: View {
                                         .font(.subheadline)
                                         .foregroundColor(.secondary)
                                 }
-                                
+
                                 Spacer()
 
                                 Image(systemName: "chevron.right")
@@ -407,7 +455,10 @@ struct HomeView: View {
                             .cornerRadius(12)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 12)
-                                    .stroke(Color.gray.opacity(0.2), lineWidth: 1)
+                                    .stroke(
+                                        Color.gray.opacity(0.2),
+                                        lineWidth: 1
+                                    )
                             )
                         }
                         .buttonStyle(PlainButtonStyle())
