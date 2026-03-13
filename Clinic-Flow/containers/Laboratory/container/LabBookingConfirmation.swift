@@ -2,6 +2,8 @@ import SwiftUI
 
 struct LabBookingConfirmation: View{
     @State private var selectedTime: String? = nil
+    @State private var selectedDate: Int? = nil
+    let today = 19
     @Environment(\.dismiss) private var dismiss
     var body: some View {
         ScrollView{
@@ -83,12 +85,27 @@ struct LabBookingConfirmation: View{
                     .padding(.top, 30)
                 
                 VStack {
-                    RoundedRectangle(cornerRadius: 15)
-                        .fill(Color.gray.opacity(0.1))
-                        .frame(height: 200)
-                        .overlay(Text("Calander").foregroundColor(.gray))
+                    Text("February 2026 < >").font(.system(size: 14, weight: .bold)).padding(.bottom, 5)
+                    let days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+                    HStack {
+                        ForEach(days, id: \.self) { day in
+                            Text(day).font(.caption2).frame(maxWidth: .infinity).foregroundColor(.gray)
+                        }
+                    }
+                    LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 7)) {
+                        ForEach(1...28, id: \.self) { day in
+                            let isPast = day < today
+                            Text("\(day)")
+                                .font(.system(size: 14))
+                                .frame(width: 32, height: 32)
+                                .background(day == selectedDate ? Color.green : Color.clear)
+                                .foregroundColor(day == selectedDate ? .white : (isPast ? .gray.opacity(0.3) : .black))
+                                .clipShape(RoundedRectangle(cornerRadius: 8))
+                                .onTapGesture { if !isPast { withAnimation { selectedDate = day } } }
+                        }
+                    }
                 }
-                .padding()
+                .padding().background(Color.white).cornerRadius(15)
                 
             
                 VStack(alignment: .leading, spacing: 15) {

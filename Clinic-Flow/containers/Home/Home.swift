@@ -379,6 +379,7 @@ struct HomeView: View {
                 }
             }
             .ignoresSafeArea(edges: .top)
+            .navigationBarBackButtonHidden(true)
         }
     }
 }
