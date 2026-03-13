@@ -10,7 +10,7 @@ struct Laboratory: View{
                     VStack(alignment: .leading) {
                         Spacer()
                         VStack(alignment: .leading) {
-                            Button(action: { dismiss() }){
+                            Button(action: { dismiss()}){
                                 Image(systemName: "arrow.left")
                             }
                             Text("Lab ")

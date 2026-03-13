@@ -229,7 +229,7 @@ struct PickDateTimeView: View {
             
             if let date = selectedDate, let time = selectedTime {
                 NavigationLink(destination: ConfirmBookingView(doctor: doctor, date: "\(date) Feb 2026", time: time)) {
-                    Text("Continue").font(.headline).foregroundColor(.white).frame(maxWidth: .infinity).padding().background(Color.blue).cornerRadius(15)
+                    Text("Continue").font(.headline).foregroundColor(.white).frame(maxWidth: .infinity).padding().background(Color.blue).cornerRadius(50)
                 }
             }
         }
@@ -313,7 +313,7 @@ struct ConfirmBookingView: View {
                 
                 NavigationLink(destination: MakePaymentView(patientName: name, date: date, doctor: doctor, time: time)) {
                     Text("Confirm Appointment").font(.headline).foregroundColor(.white).frame(maxWidth: .infinity).padding(.vertical, 18)
-                        .background(isFormValid ? Color.blue : Color.gray).cornerRadius(30)
+                        .background(isFormValid ? Color.blue : Color.gray).cornerRadius(50)
                 }
                 .disabled(!isFormValid)
             }
@@ -400,7 +400,7 @@ struct AppointmentConfirmationView: View {
             }
             Text("Thank You And Take Care!").foregroundColor(.gray)
             Spacer()
-            NavigationLink(destination: MainNavigation(goToTab: 1)) {
+            NavigationLink(destination: HomeView(isLoggedIn: .constant(true))) {
                 Text("Back to Appointments").font(.headline).foregroundColor(.white).frame(maxWidth: .infinity).padding().background(Color.blue).cornerRadius(30)
             }
         }

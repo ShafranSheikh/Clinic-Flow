@@ -2,6 +2,7 @@ import SwiftUI
 
 // MARK: - Main Profile View
 struct ProfileView: View {
+    @Binding var isLoggedIn: Bool
     @State private var selectedLanguage = "English"
     @State private var showLanguagePicker = false
     @State private var showLogoutConfirm = false
@@ -118,13 +119,11 @@ struct ProfileView: View {
                         .alert("Log Out", isPresented: $showLogoutConfirm) {
                             Button("Log Out", role: .destructive) {
                                 logout = true
+                                isLoggedIn = false
                             }
                             Button("Cancel", role: .cancel) { }
                         } message: {
                             Text("Are you sure you want to log out of your account?")
-                        }
-                        .navigationDestination(isPresented: $logout) {
-                            Login()
                         }
                     }
                     .padding(.horizontal)
@@ -173,8 +172,4 @@ struct MenuRow: View {
         .background(Color.white)
         .cornerRadius(12)
     }
-}
-
-#Preview {
-    ProfileView()
 }

@@ -1,12 +1,12 @@
 import SwiftUI
 
 struct OtpConfirmation: View {
+    @Binding var isLoggedIn: Bool
     @Environment(\.dismiss) var dismiss
 
     @State private var otpInput = ""
     @State private var showAlert = false
     let correctOTP = "1234"
-    @State private var navigateToHome = false
 
     var body: some View {
         NavigationStack {
@@ -48,7 +48,7 @@ struct OtpConfirmation: View {
 
                         Button(action: {
                             if otpInput == correctOTP {
-                                navigateToHome = true
+                                isLoggedIn = true
                             } else {
                                 showAlert = true  // Trigger the popup
                             }
@@ -60,9 +60,6 @@ struct OtpConfirmation: View {
                                 .padding()
                                 .background(Color.white)
                                 .cornerRadius(30)
-                        }
-                        .navigationDestination(isPresented: $navigateToHome) {
-                            MainNavigation()
                         }
 
                         Button("Go Back") {

@@ -22,13 +22,12 @@ struct OrderCompleted: View {
                     .foregroundColor(.green)
                 
                 VStack(alignment: .leading) {
-                    Text("Ready For Pickup").font(.subheadline).foregroundColor(.secondary)
-                    Text("0 minutes").font(.body.bold())
+                    Text("Ready For Pickup").font(.subheadline).foregroundColor(.black)
                 }
             }
             
             VStack(spacing: 10) {
-                NavigationLink(destination: ActiveVisit()) {
+                NavigationLink(destination: Navigator()) {
                     Text("Navigate to Pharmacy")
                         .font(.headline)
                         .foregroundColor(.white)
@@ -38,7 +37,7 @@ struct OrderCompleted: View {
                         .cornerRadius(50)
                 }
                 .padding(.top, 5)
-                NavigationLink(destination: ActiveVisit()) {
+                NavigationLink(destination: PharmacyConfirmDetails()) {
                     Text("Make payment")
                         .font(.headline)
                         .foregroundColor(.black)
