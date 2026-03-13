@@ -459,6 +459,7 @@ struct RecordsView: View {
                 }
             }
             .ignoresSafeArea(edges: .top)
+            .navigationBarBackButtonHidden(true)
         }
     }
 }

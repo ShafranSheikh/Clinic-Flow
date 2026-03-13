@@ -80,6 +80,7 @@ struct PersonalInfo: View {
         }
         .edgesIgnoringSafeArea(.top)
         .background(Color.white)
+        .navigationBarBackButtonHidden(true)
     }
 }
 
