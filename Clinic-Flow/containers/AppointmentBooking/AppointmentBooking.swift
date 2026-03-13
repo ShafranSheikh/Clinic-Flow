@@ -344,11 +344,11 @@ struct MakePaymentView: View {
                 Text("Select a Payment Method").font(.system(size: 24, weight: .bold))
                 
                 HStack(spacing: 15) {
-                    PaymentIcon(name: "MasterCard", imgName: "mastercard_logo", isSelected: selectedCard == "MasterCard")
+                    PaymentIcon(name: "MasterCard", imgName: "MasterCard", isSelected: selectedCard == "MasterCard")
                         .onTapGesture { selectedCard = "MasterCard" }
-                    PaymentIcon(name: "Visa", imgName: "visa_logo", isSelected: selectedCard == "Visa")
+                    PaymentIcon(name: "Visa", imgName: "Visa", isSelected: selectedCard == "Visa")
                         .onTapGesture { selectedCard = "Visa" }
-                    PaymentIcon(name: "Apple Pay", imgName: "applepay_logo", isSelected: selectedCard == "ApplePay")
+                    PaymentIcon(name: "Apple Pay", imgName: "ApplePay", isSelected: selectedCard == "ApplePay")
                         .onTapGesture { selectedCard = "ApplePay" }
                 }
                 .frame(maxWidth: .infinity)
@@ -400,8 +400,8 @@ struct AppointmentConfirmationView: View {
             }
             Text("Thank You And Take Care!").foregroundColor(.gray)
             Spacer()
-            NavigationLink(destination: HomeView()) {
-                Text("Back to Home").font(.headline).foregroundColor(.white).frame(maxWidth: .infinity).padding().background(Color.blue).cornerRadius(30)
+            NavigationLink(destination: MainNavigation(goToTab: 1)) {
+                Text("Back to Appointments").font(.headline).foregroundColor(.white).frame(maxWidth: .infinity).padding().background(Color.blue).cornerRadius(30)
             }
         }
         .padding(40)
