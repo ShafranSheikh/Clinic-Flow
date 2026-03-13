@@ -7,8 +7,8 @@ struct ParkingReservation: View {
     var body: some View {
         if parkingStatus == "done" {
             ParkingReservationDetails(onDone: {
-                    withAnimation { parkingStatus = "progress" }
-                })
+                withAnimation { parkingStatus = "progress" }
+            })
         } else {
             ScrollView {
                 VStack(spacing: 0) {
@@ -48,7 +48,12 @@ struct ParkingReservation: View {
                 .padding(.vertical, 30)
                 .background(Color.white)
                 .cornerRadius(16)
-                .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 5)
+                .shadow(
+                    color: Color.black.opacity(0.1),
+                    radius: 10,
+                    x: 0,
+                    y: 5
+                )
                 .padding(.horizontal)
                 .offset(y: -50)
                 .padding(.bottom, -30)
