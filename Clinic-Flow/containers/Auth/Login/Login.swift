@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct Login: View {
+    @Binding var isLoggedIn: Bool
 
     @State private var phoneNumber: String = ""
     @State private var navigateToOTP = false
@@ -34,10 +35,12 @@ struct Login: View {
 
                         VStack(spacing: 15) {
                             SocialButton(
+                                isLoggedIn: $isLoggedIn,
                                 icon: "apple.logo",
                                 title: "Sign In with Apple"
                             )
                             SocialButton(
+                                isLoggedIn: $isLoggedIn,
                                 icon: "g.circle.fill",
                                 title: "Sign In with Google"
                             )
@@ -82,21 +85,24 @@ struct Login: View {
                 }
                 .ignoresSafeArea(edges: .bottom)
                 .navigationDestination(isPresented: $navigateToOTP) {
-                    OtpConfirmation()
+                    OtpConfirmation(isLoggedIn: $isLoggedIn)
                 }
             }
         }
+        .navigationBarBackButtonHidden(true)
     }
 }
 
 struct SocialButton: View {
+    @Binding var isLoggedIn: Bool
+
     let icon: String
     let title: String
     @State private var navigateToOTP = false
 
     var body: some View {
         Button(action: {
-            navigateToOTP = true
+            isLoggedIn = true
         }) {
             HStack {
                 Image(systemName: icon)
@@ -108,9 +114,6 @@ struct SocialButton: View {
             .padding()
             .background(Color.black.opacity(0.3))
             .cornerRadius(30)
-        }
-        .navigationDestination(isPresented: $navigateToOTP) {
-            MainNavigation()
         }
     }
 }

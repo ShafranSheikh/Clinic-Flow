@@ -13,7 +13,7 @@ struct Pharmacy: View {
                     VStack(alignment: .leading) {
                         Spacer()
                         VStack(alignment: .leading) {
-                            Button(action: { MainNavigation(goToTab: 0) }) {
+                            Button(action: { dismiss() }) {
                                 Image(systemName: "arrow.left")
                             }
                             Text("Pharmacy ")

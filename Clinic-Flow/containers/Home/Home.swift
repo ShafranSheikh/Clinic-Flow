@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct HomeView: View {
+    @Binding var isLoggedIn: Bool
     @State private var showLogoutConfirm = false
     @State private var logout = false
 
@@ -53,16 +54,14 @@ struct HomeView: View {
                             ) {
                                 Button("Log Out", role: .destructive) {
                                     logout = true
+                                    isLoggedIn = false
                                 }
-                                
+
                                 Button("Cancel", role: .cancel) {}
                             } message: {
                                 Text(
                                     "Are you sure you want to log out of your account?"
                                 )
-                            }
-                            .navigationDestination(isPresented: $logout) {
-                                Login()
                             }
                         }
                         .padding(.horizontal)
@@ -205,23 +204,23 @@ struct HomeView: View {
                         .frame(maxWidth: .infinity)
                         .buttonStyle(PlainButtonStyle())
                         //box button 3
-//                        NavigationLink(destination: RecordsView()) {
-//                            VStack {
-//                                VStack {
-//                                    Image(systemName: "doc.text.fill")
-//                                        .font(.title)
-//                                        .foregroundColor(.purple)
-//                                }
-//                                .frame(width: 65, height: 65)
-//                                .background(Color.purple.opacity(0.1))
-//                                .cornerRadius(12)
-//
-//                                Text("Records")
-//                                    .font(.footnote.bold())
-//                                    .foregroundColor(.primary)
-//                            }
-//                        }
-//                        .frame(maxWidth: .infinity)
+                        //                        NavigationLink(destination: RecordsView()) {
+                        //                            VStack {
+                        //                                VStack {
+                        //                                    Image(systemName: "doc.text.fill")
+                        //                                        .font(.title)
+                        //                                        .foregroundColor(.purple)
+                        //                                }
+                        //                                .frame(width: 65, height: 65)
+                        //                                .background(Color.purple.opacity(0.1))
+                        //                                .cornerRadius(12)
+                        //
+                        //                                Text("Records")
+                        //                                    .font(.footnote.bold())
+                        //                                    .foregroundColor(.primary)
+                        //                            }
+                        //                        }
+                        //                        .frame(maxWidth: .infinity)
                         //box button 4
                         NavigationLink(destination: Emergency()) {
                             VStack {
@@ -242,9 +241,9 @@ struct HomeView: View {
                         .frame(maxWidth: .infinity)
                     }
                     .padding(10)
-                    
+
                     Spacer()
-                    
+
                     Text("Services")
                         .font(.title2.bold())
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -288,7 +287,7 @@ struct HomeView: View {
                             }
                         }
                         .frame(maxWidth: .infinity)
-                        
+
                         //box button 3
                         NavigationLink(destination: Parking()) {
                             VStack {
@@ -309,71 +308,71 @@ struct HomeView: View {
                         .frame(maxWidth: .infinity)
                     }
                     .padding(10)
-                    
+
                     VStack(spacing: 15) {
-                        
+
                         HStack {
                             Text("Upcoming Appointments")
                                 .font(.title2.bold())
                             Spacer()
-                            NavigationLink(destination: AppointmentsView()) {
-                                Text("See All")
-                                    .font(.subheadline.bold())
-                            }
+                            Text("See All")
+                                .font(.subheadline.bold())
                         }
                         .padding(.vertical, 10)
                         .padding(.horizontal)
-                        
-                        NavigationLink(destination: AppointmentsView()) {
-                            VStack(alignment: .leading, spacing: 10) {
-                                HStack(alignment: .center, spacing: 15) {
-                                    Image(systemName: "person.crop.circle.fill")
-                                        .resizable()
-                                        .frame(width: 50, height: 50)
-                                        .foregroundColor(.gray.opacity(0.3))
-                                    
-                                    VStack(alignment: .leading, spacing: 4) {
-                                        Text("Dr. Michael Chen")
-                                            .font(.title3.bold())
-                                            .foregroundColor(.black)
-                                        Text("Cardiology")
-                                            .font(.body)
-                                            .foregroundColor(.black)
-                                    }
-                                    
-                                    Spacer()
-                                    
-                                    Image(systemName: "chevron.right")
-                                        .font(.title3)
+
+                        VStack(alignment: .leading, spacing: 10) {
+                            HStack(alignment: .center, spacing: 15) {
+                                Image(systemName: "person.crop.circle.fill")
+                                    .resizable()
+                                    .frame(width: 50, height: 50)
+                                    .foregroundColor(.gray.opacity(0.3))
+
+                                VStack(alignment: .leading, spacing: 4) {
+                                    Text("Dr. Michael Chen")
+                                        .font(.title3.bold())
+                                        .foregroundColor(.black)
+                                    Text("Cardiology")
+                                        .font(.body)
+                                        .foregroundColor(.black)
+                                }
+
+                                Spacer()
+
+                                Image(systemName: "chevron.right")
+                                    .font(.title3)
+                                    .foregroundColor(.gray)
+                            }
+
+                            HStack(spacing: 25) {
+
+                                HStack(spacing: 8) {
+                                    Image(systemName: "calendar")
+                                        .foregroundColor(.gray)
+                                    Text("Feb 14, 2026")
                                         .foregroundColor(.gray)
                                 }
-                                
-                                HStack(spacing: 25) {
-                                    
-                                    HStack(spacing: 8) {
-                                        Image(systemName: "calendar")
-                                            .foregroundColor(.gray)
-                                        Text("Feb 14, 2026")
-                                            .foregroundColor(.gray)
-                                    }
-                                    
-                                    HStack(spacing: 8) {
-                                        Image(systemName: "clock")
-                                            .foregroundColor(.gray)
-                                        Text("10:00 AM")
-                                            .foregroundColor(.gray)
-                                    }
+
+                                HStack(spacing: 8) {
+                                    Image(systemName: "clock")
+                                        .foregroundColor(.gray)
+                                    Text("10:00 AM")
+                                        .foregroundColor(.gray)
                                 }
-                                .padding(.leading, 75)
                             }
-                            .padding()
-                            .background(Color.white)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 15)
-                                    .stroke(Color.gray.opacity(0.3), lineWidth: 1)
-                            )
-                            .padding(.horizontal)
+                            .padding(.leading, 75)
                         }
+                        .padding()
+                        .background(Color.white)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 15)
+                                .stroke(
+                                    Color.gray.opacity(0.3),
+                                    lineWidth: 1
+                                )
+                        )
+                        .padding(.horizontal)
+
                     }
                     .padding(.vertical, 20)
                 }
@@ -384,5 +383,5 @@ struct HomeView: View {
     }
 }
 #Preview {
-    HomeView()
+    HomeView(isLoggedIn: .constant(true))
 }

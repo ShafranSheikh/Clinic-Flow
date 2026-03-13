@@ -35,8 +35,8 @@ struct PharmacyPaymentConfirmation: View {
             }
             Text("Thank You And Take Care!").foregroundColor(.gray)
             Spacer()
-            NavigationLink(destination: Pharmacy()) {
-                Text("Back to Pharmacy").font(.headline).foregroundColor(.white).frame(maxWidth: .infinity).padding().background(Color.blue).cornerRadius(30)
+            NavigationLink(destination: HomeView(isLoggedIn: .constant(true))) {
+                Text("Back to Home").font(.headline).foregroundColor(.white).frame(maxWidth: .infinity).padding().background(Color.blue).cornerRadius(30)
             }
         }
         .padding(40)

@@ -1,16 +1,12 @@
 import SwiftUI
 
 struct MainNavigation: View {
+    @Binding var isLoggedIn: Bool
     @State private var selectedTab = 0
-
-    //MainNavigation(goToTab: tag) can navigate to needed page
-    init(goToTab: Int = 0) {
-        _selectedTab = State(initialValue: goToTab)
-    }
 
     var body: some View {
         TabView(selection: $selectedTab) {
-            HomeView()
+            HomeView(isLoggedIn: $isLoggedIn)
                 .tabItem {
                     Label("Home", systemImage: "house.fill")
                 }
@@ -28,7 +24,7 @@ struct MainNavigation: View {
                 }
                 .tag(2)
 
-            ProfileView()
+            ProfileView(isLoggedIn: $isLoggedIn)
                 .tabItem {
                     Label("Profile", systemImage: "person.circle.fill")
                 }
@@ -39,5 +35,5 @@ struct MainNavigation: View {
 }
 
 #Preview {
-    MainNavigation()
+    MainNavigation(isLoggedIn: .constant(true))
 }

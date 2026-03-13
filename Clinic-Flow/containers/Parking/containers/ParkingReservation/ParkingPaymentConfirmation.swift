@@ -34,7 +34,7 @@ struct ParkingPaymentConfirmation: View {
             }
             Text("Thank You And Take Care!").foregroundColor(.gray)
             Spacer()
-            NavigationLink(destination: MainNavigation(goToTab: 0)) {
+            NavigationLink(destination: HomeView(isLoggedIn: .constant(true))) {
                 Text("Back to Home").font(.headline).foregroundColor(.white).frame(maxWidth: .infinity).padding().background(Color.orange).cornerRadius(30)
             }
         }
